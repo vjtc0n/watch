@@ -14,6 +14,7 @@ import {
 
 import Tab1 from './src/stopwatch/tab1';
 import Tab2 from './src/stopwatch/tab2';
+import Tab3 from './src/stopwatch/tab3';
 console.disableYellowBox = true;
 
 class StopWatch extends Component {
@@ -21,7 +22,7 @@ class StopWatch extends Component {
   constructor(props){
     super(props)
     this.state = {
-      selectedTab: 'tab1',
+      selectedTab: 'tab3',
     };
 
   }
@@ -40,6 +41,13 @@ class StopWatch extends Component {
     
   }
 
+  tab3Change() {
+    this.setState({
+      selectedTab: 'tab3'
+    });
+
+  }
+
   render() {
 
 
@@ -47,7 +55,6 @@ class StopWatch extends Component {
         <View style={styles.main}>
           <TabBarIOS>
             <TabBarIOS.Item
-
                 selected={this.state.selectedTab === "tab1"}
                 icon={require("./src/images/home-icon-silhouette.png")}
                 onPress={this.tab1Change.bind(this)} >
@@ -57,12 +64,20 @@ class StopWatch extends Component {
              </TabBarIOS.Item>
 
             <TabBarIOS.Item
-
                 selected={this.state.selectedTab === "tab2"}
                 icon={require("./src/images/apple.png")}
                 onPress={this.tab2Change.bind(this)} >
               <View style={styles.tabScreen}>
-                <Tab2 />
+                <Tab2 title="Demo"/>
+              </View>
+            </TabBarIOS.Item>
+
+            <TabBarIOS.Item
+                selected={this.state.selectedTab === "tab3"}
+                icon={require("./src/images/apple.png")}
+                onPress={this.tab3Change.bind(this)} >
+              <View style={styles.tabScreen}>
+                <Tab3 />
               </View>
             </TabBarIOS.Item>
 
