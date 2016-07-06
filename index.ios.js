@@ -53,7 +53,6 @@ class StopWatch extends Component {
     this.setState({
       selectedTab: 'tab5'
     });
-
   }
 
   render() {
