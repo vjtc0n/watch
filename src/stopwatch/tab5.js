@@ -53,36 +53,16 @@ class Tab5 extends Component {
             </View>
         );
     }
-    getCurrentLocation() {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                var initialPosition = position.coords;
-                //console.log(initialPosition);
-                //this.setState({initialPosition});
-                /*console.log(initialPosition.latitude);
-                 console.log(initialPosition.longitude);*/
-                this.setState({
-                    pin: {
-                        latitude: initialPosition.latitude,
-                        longitude: initialPosition.longitude
-                    }
-                });
-
-                // Cho nay Check State --> ra location user
-                console.log(this.state.pin);
-
-            },
-            (error) => alert(error.message),
-        );
-    }
 
     onRegionChangeComplete(region) {
+        //console.log(region);
 
-        this.getCurrentLocation();
-        //console.log(this.state.pin);
-        /*console.log(region);*/
-
-        // Cho nay check lai State thi ra (0,0) --> Khong hieu tai sao
+        this.setState({
+            pin: {
+                latitude: region.latitude,
+                longitude: region.longitude
+            }
+        });
         console.log(this.state.pin);
 
         Api(region.latitude, region.longitude)
@@ -91,7 +71,6 @@ class Tab5 extends Component {
                 //console.log(data);
                 this.setState(data);
             });
-
     }
 }
 
