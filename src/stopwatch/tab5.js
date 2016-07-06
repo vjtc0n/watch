@@ -12,7 +12,8 @@ import {
     ListView,
     Image,
     TouchableOpacity,
-    MapView
+    MapView,
+    DeviceEventEmitter
 
 } from 'react-native';
 
@@ -36,6 +37,7 @@ class Tab5 extends Component {
 
 
     render() {
+
         return(
             <View style={styles.container}>
                 <MapView
@@ -51,20 +53,42 @@ class Tab5 extends Component {
             </View>
         );
     }
+    getCurrentLocation() {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                var initialPosition = position.coords;
+                //console.log(initialPosition);
+                //this.setState({initialPosition});
+                /*console.log(initialPosition.latitude);
+                 console.log(initialPosition.longitude);*/
+                this.setState({
+                    pin: {
+                        latitude: initialPosition.latitude,
+                        longitude: initialPosition.longitude
+                    }
+                });
+
+                // Cho nay Check State --> ra location user
+                console.log(this.state.pin);
+
+            },
+            (error) => alert(error.message),
+        );
+    }
 
     onRegionChangeComplete(region) {
+
+        this.getCurrentLocation();
+        //console.log(this.state.pin);
         /*console.log(region);*/
-        this.setState({
-            pin: {
-                longitude: region.longitude,
-                latitude: region.latitude
-            }
-        });
+
+        // Cho nay check lai State thi ra (0,0) --> Khong hieu tai sao
+        console.log(this.state.pin);
 
         Api(region.latitude, region.longitude)
         //we don't use .then(function(data){}), we use promise as below, thus if we use "this", it means this component
             .then((data) => {
-                console.log(data);
+                //console.log(data);
                 this.setState(data);
             });
 
@@ -96,3 +120,5 @@ const styles = StyleSheet.create({
 
 
 module.exports = Tab5;
+
+
