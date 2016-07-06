@@ -53,17 +53,36 @@ class Tab5 extends Component {
             </View>
         );
     }
+    getCurrentLocation() {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                var initialPosition = position.coords;
+                console.log(initialPosition);
+                //this.setState({initialPosition});
+                /*console.log(initialPosition.latitude);
+                 console.log(initialPosition.longitude);*/
+                this.setState({
+                    pin: {
+                        latitude: 35.80330721160075,
+                        longitude: 139.4
+                    }
+                });
+
+                // Cho nay Check State --> ra location user
+                console.log(this.state.pin);
+
+            },
+            (error) => alert(error.message),
+        );
+    }
 
     onRegionChangeComplete(region) {
-        //console.log(region);
 
-        this.setState({
-            pin: {
-                latitude: region.latitude,
-                longitude: region.longitude
-            }
-        });
-        console.log(this.state.pin);
+        this.getCurrentLocation();
+        //console.log(this.state.pin);
+        /*sconsole.log(region);*/
+
+        /*console.log(this.state.pin);*/
 
         Api(region.latitude, region.longitude)
         //we don't use .then(function(data){}), we use promise as below, thus if we use "this", it means this component
@@ -71,6 +90,7 @@ class Tab5 extends Component {
                 //console.log(data);
                 this.setState(data);
             });
+
     }
 }
 
