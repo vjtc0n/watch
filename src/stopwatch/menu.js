@@ -18,35 +18,6 @@ import {
 const window = Dimensions.get('window');
 const uri = 'http://pickaface.net/includes/themes/clean/img/slide2.png';
 
-const styles = StyleSheet.create({
-    menu: {
-        flex: 1,
-        width: window.width,
-        height: window.height,
-        backgroundColor: 'gray',
-        padding: 20
-    },
-    avatarContainer: {
-        marginBottom: 20,
-        marginTop: 20
-    },
-    avatar: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        flex: 1
-    },
-    name: {
-        position: 'absolute',
-        left: 70,
-        top: 20
-    },
-    item: {
-        fontSize: 14,
-        fontWeight: '300',
-        paddingTop: 5
-    }
-});
 
 class Menu extends Component {
 
@@ -88,5 +59,36 @@ class Menu extends Component {
 Menu.propTypes = {
     onItemSelected: React.PropTypes.func.isRequired
 };
+
+
+const styles = StyleSheet.create({
+    menu: {
+        flex: 1,
+        width: window.width,
+        height: window.height,
+        backgroundColor: 'gray',
+        padding: 20
+    },
+    avatarContainer: {
+        marginBottom: 20,
+        marginTop: 20
+    },
+    avatar: {
+        width: 48,
+        height: 48,
+        borderRadius: 24,
+        flex: 1
+    },
+    name: {
+        position: 'absolute',
+        left: 70,
+        top: 20
+    },
+    item: {
+        fontSize: 14,
+        fontWeight: '300',
+        paddingTop: 5
+    }
+});
 
 module.exports = Menu;

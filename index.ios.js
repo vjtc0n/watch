@@ -16,6 +16,7 @@ import Tab1 from './src/stopwatch/tab1';
 import Tab2 from './src/stopwatch/tab2';
 import NavigatorTab from './src/stopwatch/tab3';
 import Tab5 from './src/stopwatch/tab5';
+import Tab6 from './src/stopwatch/tab6';
 console.disableYellowBox = true;
 
 class StopWatch extends Component {
@@ -23,7 +24,7 @@ class StopWatch extends Component {
   constructor(props){
     super(props)
     this.state = {
-      selectedTab: 'tab5',
+      selectedTab: 'tab6'
     };
 
   }
@@ -52,6 +53,12 @@ class StopWatch extends Component {
   tab5Change() {
     this.setState({
       selectedTab: 'tab5'
+    });
+  }
+
+  tab6Change() {
+    this.setState({
+      selectedTab: 'tab6'
     });
   }
 
@@ -94,6 +101,15 @@ class StopWatch extends Component {
                 onPress={this.tab5Change.bind(this)} >
               <View style={styles.tabScreen}>
                 <Tab5 />
+              </View>
+            </TabBarIOS.Item>
+
+            <TabBarIOS.Item
+                selected={this.state.selectedTab === "tab6"}
+                icon={require("./src/images/apple.png")}
+                onPress={this.tab6Change.bind(this)} >
+              <View style={styles.tabScreen}>
+                <Tab6 />
               </View>
             </TabBarIOS.Item>
 
